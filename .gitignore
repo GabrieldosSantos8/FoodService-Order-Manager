@@ -1,0 +1,40 @@
+# Angular
+node_modules/
+dist/
+.angular/
+*.js.map
+*.js
+
+# .NET / C#
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dll
+*.pdb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+*.appsettings.Development.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SQLite
+*.db
+*.sqlite

@@ -1,0 +1,74 @@
+<div class="home-wrapper">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Bem-vindo à Our Pizzaria! 🍕</h1>
+      <p>Melhor pizza da cidade!</p>
+      <p>Faça seu pedido agora e aproveite nossos deliciosos sabores.</p>
+      
+      <div class="cta-buttons">
+        <a routerLink="/cardapio" class="btn-primary">Ver Cardápio 🍕</a>
+        <a routerLink="/sobre" class="btn-secondary">Sobre Nós ℹ️</a>
+      </div>
+    </div>
+
+    <div class="hero-imagem">
+      <img src="https://images.unsplash.com/photo-1628840042765-356cda07f4ee?w=600&h=400&fit=crop" 
+           alt="Pizzaria" 
+           class="pizzaria-img">
+    </div>
+  </div>
+
+  <div class="features-section">
+    <h2>Por que escolher a gente?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🚚</div>
+        <h3>Entrega Rápida</h3>
+        <p>Frete rápido e seguro para sua casa</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👨‍🍳</div>
+        <h3>Ingredientes Frescos</h3>
+        <p>Sempre com ingredientes de qualidade</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Melhor Preço</h3>
+        <p>Preços competitivos e promoções</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="usuarios-section">
+    <button (click)="mostarUsuarios.set(!mostarUsuarios())" class="btn-toggle">
+      {{ mostarUsuarios() ? 'Ocultar' : 'Ver' }} Equipe de Pizzaiolos 👨‍🍳
+    </button>
+
+    @if (mostarUsuarios()) {
+      <div class="container">
+        <h2>🍕 Equipe de Pizzaiolos</h2>
+        
+        @if (listaUsuarios().length > 0) {
+          <table class="tabela-pizzaria">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (u of listaUsuarios(); track u.id) {
+                <tr>
+                  <td>{{ u.nome }}</td>
+                  <td>{{ u.email }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p class="sem-dados">Nenhum pizzaiolo cadastrado ainda.</p>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Login</h2>
+    
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input 
+        type="email" 
+        id="email" 
+        [(ngModel)]="email"
+        placeholder="seu@email.com"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha:</label>
+      <input 
+        type="password" 
+        id="senha" 
+        [(ngModel)]="senha"
+        placeholder="Sua senha"
+      >
+    </div>
+
+    @if (mensagemErro()) {
+      <div class="erro">{{ mensagemErro() }}</div>
+    }
+
+    <button 
+      (click)="login()" 
+      [disabled]="carregando()"
+      class="btn-login"
+    >
+      @if (carregando()) {
+        Carregando...
+      } @else {
+        Entrar
+      }
+    </button>
+
+    <p class="cadastro-link">
+      Não tem conta? <a href="/cadastro">Cadastre-se aqui</a>
+    </p>
+  </div>
+</div>

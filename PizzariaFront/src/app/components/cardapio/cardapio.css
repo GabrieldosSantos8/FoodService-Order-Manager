@@ -1,0 +1,373 @@
+.cardapio-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cardapio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cardapio-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.btn-carrinho-toggle {
+  padding: 0.75rem 1.5rem;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.btn-carrinho-toggle:hover {
+  background-color: #b71c1c;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #ffeb3b;
+  color: #333;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.cardapio-section {
+  flex: 1;
+  transition: opacity 0.3s;
+}
+
+.carrinho-section {
+  flex: 0 0 400px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  transition: opacity 0.3s;
+}
+
+.carrinho-section h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #d32f2f;
+  padding-bottom: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.carregando {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.pizzas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.pizza-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pizza-imagem {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.pizza-info {
+  padding: 1.5rem;
+}
+
+.pizza-info h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.descricao {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.categoria {
+  color: #999;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.pizza-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.preco {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #d32f2f;
+}
+
+.btn-adicionar {
+  padding: 0.5rem 1rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+}
+
+.btn-adicionar:hover {
+  background-color: #764ba2;
+}
+
+/* Carrinho */
+
+.carrinho-vazio {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.carrinho-vazio p {
+  margin: 0.5rem 0;
+}
+
+.carrinho-items {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.carrinho-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  background: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.carrinho-item:last-child {
+  border-bottom: none;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h4 {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.item-preco {
+  margin: 0.3rem 0 0 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.item-controles {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-quantidade {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-quantidade:hover {
+  background-color: #667eea;
+  color: white;
+}
+
+.quantidade {
+  min-width: 25px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+}
+
+.item-total {
+  min-width: 70px;
+  text-align: right;
+}
+
+.item-total span {
+  display: block;
+  font-weight: 600;
+  color: #d32f2f;
+  font-size: 0.95rem;
+}
+
+.btn-remover {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remover:hover {
+  background: #c62828;
+  color: white;
+}
+
+.carrinho-resumo {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.resumo-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #666;
+}
+
+.resumo-row.total-final {
+  font-size: 1.2rem;
+  color: #333;
+  border-top: 2px solid #ddd;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.resumo-row h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.carrinho-acoes {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.btn-limpar {
+  padding: 0.75rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-limpar:hover {
+  background-color: #da190b;
+}
+
+.btn-pagar-grande {
+  padding: 1rem;
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-pagar-grande:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .carrinho-section {
+    flex: 0 0 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .carrinho-section {
+    flex: 1;
+    position: relative;
+    top: 0;
+  }
+
+  .cardapio-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pizzas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .carrinho-item {
+    flex-wrap: wrap;
+  }}

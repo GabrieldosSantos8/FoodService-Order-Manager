@@ -1,0 +1,86 @@
+<div class="cardapio-container">
+  <div class="cardapio-header">
+    <h1>Nosso Cardápio 🍕</h1>
+    <button class="btn-carrinho-toggle" (click)="mostrarCarrinho.set(!mostrarCarrinho())">
+      🛒 Carrinho <span class="badge">{{ carrinhoQuantidade() }}</span>
+    </button>
+  </div>
+
+  <div class="main-content">
+    <div [class.cardapio-section]="!mostrarCarrinho()" [class.hidden]="mostrarCarrinho()">
+      @if (carregando()) {
+        <div class="carregando">Carregando pizzas...</div>
+      } @else {
+        <div class="pizzas-grid">
+          @for (pizza of pizzas(); track pizza.id) {
+            <div class="pizza-card">
+              <img [src]="pizza.imagem" [alt]="pizza.nome" class="pizza-imagem">
+              <div class="pizza-info">
+                <h3>{{ pizza.nome }}</h3>
+                <p class="descricao">{{ pizza.descricao }}</p>
+                <p class="categoria">{{ pizza.categoria }}</p>
+                <div class="pizza-footer">
+                  <span class="preco">R$ {{ pizza.preco | number: '1.2-2' }}</span>
+                  <button (click)="adicionarAoCarrinho(pizza)" class="btn-adicionar">
+                    ➕ Adicionar
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="carrinho-section" [class.hidden]="!mostrarCarrinho()">
+      <h2>🛒 Seu Carrinho</h2>
+
+      @if (carrinho().length === 0) {
+        <div class="carrinho-vazio">
+          <p>Seu carrinho está vazio 😢</p>
+          <p>Clique em "Adicionar" para começar!</p>
+        </div>
+      } @else {
+        <div class="carrinho-items">
+          @for (item of carrinho(); track item.id) {
+            <div class="carrinho-item">
+              <div class="item-info">
+                <h4>{{ item.pizzaNome }}</h4>
+                <p class="item-preco">R$ {{ item.precoUnitario | number: '1.2-2' }} unidade</p>
+              </div>
+
+              <div class="item-controles">
+                <button class="btn-quantidade" (click)="diminuirQuantidade(item.id)">−</button>
+                <span class="quantidade">{{ item.quantidade }}</span>
+                <button class="btn-quantidade" (click)="aumentarQuantidade(item.id)">+</button>
+              </div>
+
+              <div class="item-total">
+                <span class="total">R$ {{ (item.quantidade * item.precoUnitario) | number: '1.2-2' }}</span>
+              </div>
+
+              <button class="btn-remover" (click)="removerDoCarrinho(item.id)">🗑️</button>
+            </div>
+          }
+        </div>
+
+        <div class="carrinho-resumo">
+          <div class="resumo-row">
+            <span>Subtotal:</span>
+            <span>R$ {{ carrinhoTotal() | number: '1.2-2' }}</span>
+          </div>
+          <div class="resumo-row total-final">
+            <h3>Total:</h3>
+            <h3>R$ {{ carrinhoTotal() | number: '1.2-2' }}</h3>
+          </div>
+        </div>
+
+        <div class="carrinho-acoes">
+          <button class="btn-limpar" (click)="limparCarrinho()">🧹 Limpar Carrinho</button>
+          <button class="btn-pagar-grande" (click)="irParaPagamento()">
+            💳 Ir para Pagamento
+          </button>
+        </div>
+      }
+    </div>
+  </div>

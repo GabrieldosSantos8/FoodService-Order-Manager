@@ -1,0 +1,38 @@
+<div class="pedidos-container">
+  <div class="pedidos-header">
+    <h1>Meus Pedidos 📋</h1>
+    <button (click)="novoPedido()" class="btn-novo">
+      Novo Pedido 🍕
+    </button>
+  </div>
+
+  @if (carregando()) {
+    <div class="carregando">Carregando pedidos...</div>
+  } @else if (pedidos().length > 0) {
+    <div class="pedidos-lista">
+      @for (pedido of pedidos(); track pedido.id) {
+        <div class="pedido-card">
+          <div class="pedido-header">
+            <h3>Pedido #{{ pedido.id }}</h3>
+            <span [ngClass]="obterClasseStatus(pedido.status)" class="status">
+              {{ pedido.status }}
+            </span>
+          </div>
+          <div class="pedido-info">
+            <p><strong>Data:</strong> {{ pedido.dataPedido | date: 'dd/MM/yyyy' }}</p>
+            <p><strong>Itens:</strong> {{ pedido.itens }}</p>
+            <p><strong>Total:</strong> R$ {{ pedido.total | number: '1.2-2' }}</p>
+          </div>
+          <button (click)="verDetalhes(pedido.id)" class="btn-detalhe">Ver Detalhes</button>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="sem-pedidos">
+      <p>Você ainda não fez nenhum pedido.</p>
+      <button (click)="novoPedido()" class="btn-comece">
+        Comece agora! 🍕
+      </button>
+    </div>
+  }
+</div>

@@ -1,0 +1,105 @@
+<div class="perfil-container">
+  @if (mensagem()) {
+    <div [class]="tipoMensagem() === 'sucesso' ? 'msg-sucesso' : 'msg-erro'">{{ mensagem() }}</div>
+  }
+
+  <!-- Dados Pessoais -->
+  <div class="perfil-section">
+    <div class="section-header">
+      <h2>Dados Pessoais 👤</h2>
+      @if (!editandoPerfil()) {
+        <button (click)="iniciarEdicao()" class="btn-editar">✏️ Editar</button>
+      }
+    </div>
+
+    @if (usuario()) {
+      @if (editandoPerfil()) {
+        <form (ngSubmit)="salvarPerfil()" class="form">
+          <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" [(ngModel)]="usuarioEditado()!.nome" name="nome" [disabled]="carregando()">
+          </div>
+          <div class="form-group">
+            <label>E-mail:</label>
+            <input type="email" [(ngModel)]="usuarioEditado()!.email" name="email" [disabled]="carregando()">
+          </div>
+          <div class="form-group">
+            <label>Telefone:</label>
+            <input type="tel" [(ngModel)]="usuarioEditado()!.telefone" name="telefone" [disabled]="carregando()">
+          </div>
+          <div class="form-acoes">
+            <button type="submit" class="btn-salvar" [disabled]="carregando()">@if(carregando()){ Salvando... } @else { ✅ Salvar }</button>
+            <button type="button" (click)="cancelarEdicao()" class="btn-cancelar-form">❌ Cancelar</button>
+          </div>
+        </form>
+      } @else {
+        <div class="info-display">
+          <div class="info-item"><strong>Nome:</strong><span>{{ usuario()!.nome }}</span></div>
+          <div class="info-item"><strong>E-mail:</strong><span>{{ usuario()!.email }}</span></div>
+          <div class="info-item"><strong>Telefone:</strong><span>{{ usuario()!.telefone }}</span></div>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Segurança -->
+  <div class="perfil-section">
+    <div class="section-header">
+      <h2>Segurança 🔒</h2>
+      @if (!alterandoSenha()) {
+        <button (click)="alterandoSenha.set(true)" class="btn-editar">🔑 Alterar Senha</button>
+      }
+    </div>
+
+    @if (alterandoSenha()) {
+      <form (ngSubmit)="alterarSenha()" class="form">
+        <div class="form-group"><label>Senha Atual:</label><input type="password" [(ngModel)]="senhaAtual" name="senhaAtual" [disabled]="carregando()"></div>
+        <div class="form-group"><label>Nova Senha:</label><input type="password" [(ngModel)]="novaSenha" name="novaSenha" [disabled]="carregando()"></div>
+        <div class="form-group"><label>Confirmar Senha:</label><input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha" [disabled]="carregando()"></div>
+        <div class="form-acoes">
+          <button type="submit" class="btn-salvar" [disabled]="carregando()">@if(carregando()){ Alterando... } @else { 🔑 Alterar Senha }</button>
+          <button type="button" (click)="cancelarAlteracaoSenha()" class="btn-cancelar-form">❌ Cancelar</button>
+        </div>
+      </form>
+    } @else {
+      <p class="info-seguranca">Clique em "Alterar Senha" para fazer alterações.</p>
+    }
+  </div>
+
+  <!-- Endereços -->
+  <div class="perfil-section">
+    <div class="section-header">
+      <h2>Endereços 📍</h2>
+      @if (!adicionandoEndereco()) {
+        <button (click)="adicionandoEndereco.set(true)" class="btn-adicionar">➕ Novo Endereço</button>
+      }
+    </div>
+
+    @if (adicionandoEndereco()) {
+      <form (ngSubmit)="salvarEndereco()" class="form">
+        <div class="form-group"><label>Rua:</label><input type="text" [(ngModel)]="enderecoAdicionando().rua" name="rua" [disabled]="carregando()"></div>
+        <div class="form-row"><div class="form-group"><label>Número:</label><input type="text" [(ngModel)]="enderecoAdicionando().numero" name="numero" [disabled]="carregando()"></div><div class="form-group"><label>Bairro:</label><input type="text" [(ngModel)]="enderecoAdicionando().bairro" name="bairro" [disabled]="carregando()"></div></div>
+        <div class="form-row"><div class="form-group"><label>Cidade:</label><input type="text" [(ngModel)]="enderecoAdicionando().cidade" name="cidade" [disabled]="carregando()"></div><div class="form-group"><label>Estado:</label><input type="text" [(ngModel)]="enderecoAdicionando().estado" name="estado" [disabled]="carregando()"></div></div>
+        <div class="form-group"><label>CEP:</label><input type="text" [(ngModel)]="enderecoAdicionando().cep" name="cep" [disabled]="carregando()"></div>
+        <div class="form-acoes"><button type="submit" class="btn-salvar" [disabled]="carregando()">✅ Adicionar</button><button type="button" (click)="adicionandoEndereco.set(false)" class="btn-cancelar-form">❌ Cancelar</button></div>
+      </form>
+    }
+
+    @if (enderecos().length > 0) {
+      <div class="enderecos-lista">
+        @for (endereco of enderecos(); track endereco.id) {
+          <div class="endereco-card">
+            <div class="endereco-info">
+              <p><strong>{{ endereco.rua }}, {{ endereco.numero }}</strong></p>
+              <p>{{ endereco.bairro }} - {{ endereco.cidade }}, {{ endereco.estado }}</p>
+              <p class="cep">CEP: {{ endereco.cep }}</p>
+            </div>
+            <button type="button" (click)="deletarEndereco(endereco.id)" class="btn-deletar">🗑️ Deletar</button>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="sem-dados">📭 Nenhum endereço cadastrado</p>
+    }
+  </div>
+</div>

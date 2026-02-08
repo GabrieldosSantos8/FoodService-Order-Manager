@@ -1,0 +1,133 @@
+<div class="cadastro-wrapper">
+  @if (usuarioCadastrado()) {
+    <div class="confirmacao-container">
+      <div class="confirmacao-card">
+        <div class="confirmacao-header">
+          <h1>✅ Cadastro Realizado com Sucesso!</h1>
+        </div>
+
+        @if (sucessoMensagem()) {
+          <div class="mensagem-sucesso">{{ sucessoMensagem() }}</div>
+        }
+
+        <div class="dados-confirmacao">
+          <h2>Dados do Cadastro</h2>
+          
+          <div class="info-item">
+            <label>Nome:</label>
+            <p class="info-value">{{ usuarioCadastrado()!.nome }}</p>
+          </div>
+
+          <div class="info-item">
+            <label>E-mail:</label>
+            <p class="info-value">{{ usuarioCadastrado()!.email }}</p>
+          </div>
+
+          <div class="info-item">
+            <label>Telefone:</label>
+            <p class="info-value">{{ usuarioCadastrado()!.telefone }}</p>
+          </div>
+
+          <div class="info-item info-item-importante">
+            <p class="aviso">⚠️ Sua senha foi registrada com segurança. Você pode fazer login agora!</p>
+          </div>
+        </div>
+
+        <div class="acoes-confirmacao">
+          <button (click)="irParaLogin()" class="btn-login-agora">
+            Fazer Login Agora →
+          </button>
+          <button (click)="novosCadastro()" class="btn-novo-cadastro">
+            Novo Cadastro
+          </button>
+        </div>
+
+        <p class="redirecionamento-texto">Redirecionando para login em 2 segundos...</p>
+      </div>
+    </div>
+  } @else {
+    <div class="cadastro-container">
+      <div class="cadastro-card">
+        <div class="cadastro-header">
+          <h1>Criar Conta 🍕</h1>
+          <p>Junte-se à nossa comunidade de clientes!</p>
+        </div>
+
+        @if (erroMensagem()) {
+          <div class="mensagem-erro">{{ erroMensagem() }}</div>
+        }
+
+        <form (ngSubmit)="onSubmit()" class="cadastro-form">
+          <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input 
+              type="text" 
+              id="nome"
+              [ngModel]="usuario().nome" 
+              (ngModelChange)="usuario().nome = $event"
+              name="nome" 
+              placeholder="Seu nome completo"
+              [disabled]="carregando()"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input 
+              type="email" 
+              id="email"
+              [ngModel]="usuario().email" 
+              (ngModelChange)="usuario().email = $event"
+              name="email" 
+              placeholder="seu@email.com"
+              [disabled]="carregando()"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input 
+              type="tel" 
+              id="telefone"
+              [ngModel]="usuario().telefone" 
+              (ngModelChange)="usuario().telefone = $event"
+              name="telefone" 
+              placeholder="(11) 98765-4321"
+              [disabled]="carregando()"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input 
+              type="password" 
+              id="senha"
+              [ngModel]="usuario().senha" 
+              (ngModelChange)="usuario().senha = $event"
+              name="senha" 
+              placeholder="Digite uma senha segura (mín. 6 caracteres)"
+              [disabled]="carregando()"
+            >
+            <small>Use uma mistura de letras, números e símbolos</small>
+          </div>
+
+          <button 
+            type="submit" 
+            class="btn-cadastrar"
+            [disabled]="carregando()"
+          >
+            @if (carregando()) {
+              Carregando...
+            } @else {
+              Cadastrar
+            }
+          </button>
+        </form>
+
+        <div class="rodape-cadastro">
+          <p>Já tem conta? <a routerLink="/login" class="link-login">Faça login aqui</a></p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

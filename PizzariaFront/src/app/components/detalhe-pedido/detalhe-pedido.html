@@ -1,0 +1,73 @@
+<div class="detalhe-container">
+  <button class="btn-volta" (click)="voltarPedidos()">← Voltar para Pedidos</button>
+
+  @if (carregando()) {
+    <div class="carregando">Carregando detalhes...</div>
+  } @else if (pedido()) {
+    <div class="pedido-detalhe">
+      <div class="header-detalhe">
+        <h1>Pedido #{{ pedido()!.id }}</h1>
+        <span [ngClass]="obterClasseStatus(pedido()!.status)" class="status-grande">
+          {{ pedido()!.status }}
+        </span>
+      </div>
+
+      <div class="info-principal">
+        <div class="info-box">
+          <h3>Datas</h3>
+          <p><strong>Pedido em:</strong> {{ pedido()!.dataPedido | date: 'dd/MM/yyyy HH:mm' }}</p>
+          <p><strong>Entrega prevista:</strong> {{ pedido()!.dataEntrega | date: 'dd/MM/yyyy' }}</p>
+        </div>
+
+        <div class="info-box">
+          <h3>Entrega</h3>
+          <p>{{ pedido()!.endereco }}</p>
+        </div>
+
+        <div class="info-box">
+          <h3>Observações</h3>
+          <p>{{ pedido()!.observacoes || 'Nenhuma observação' }}</p>
+        </div>
+      </div>
+
+      <div class="itens-pedido">
+        <h2>Itens do Pedido</h2>
+        <table class="tabela-itens">
+          <thead>
+            <tr>
+              <th>Pizza</th>
+              <th>Quantidade</th>
+              <th>Preço Unitário</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of pedido()!.itens; track item.id) {
+              <tr>
+                <td>{{ item.pizzaNome }}</td>
+                <td style="text-align: center;">{{ item.quantidade }}</td>
+                <td>R$ {{ item.precoUnitario | number: '1.2-2' }}</td>
+                <td style="font-weight: 600;">R$ {{ item.total | number: '1.2-2' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="totalizacao">
+        <div class="total-box">
+          <h3>Valor Total</h3>
+          <p class="valor-total">R$ {{ pedido()!.total | number: '1.2-2' }}</p>
+        </div>
+      </div>
+
+      <div class="acoes">
+        @if (pedido()!.status === 'Pendente') {
+          <button class="btn-pagar" (click)="irParaPagamento()">💳 Ir para Pagamento</button>
+          <button class="btn-cancelar" (click)="cancelarPedido()">Cancelar Pedido</button>
+        }
+        <button class="btn-voltar-simples" (click)="voltarPedidos()">Voltar</button>
+      </div>
+    </div>
+  }
+</div>

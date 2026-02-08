@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <div class="nav-brand">
+    <span routerLink="/" class="logo-text">🍕 Pizzaria</span>
+  </div>
+  
+  <ul class="nav-links">
+    <li><a routerLink="/sobre" routerLinkActive="active">Sobre Empresa</a></li>
+    <li><a routerLink="/cardapio" routerLinkActive="active">Cardápio</a></li>
+    @if (authService.estaAutenticado()) {
+      <li><a routerLink="/pedidos" routerLinkActive="active">📦 Pedidos</a></li>
+    }
+  </ul>
+
+  <div class="nav-auth">
+    @if (authService.estaAutenticado()) {
+      <div class="usuario-info">
+        <span class="usuario-nome">👤 {{ authService.usuarioLogado()?.nome }}</span>
+        <button class="btn-logout" (click)="logout()">🚪 Sair</button>
+      </div>
+      <a routerLink="/perfil" class="btn-perfil">⚙️ Perfil</a>
+    } @else {
+      <button class="btn-login" routerLink="/login">🔐 Login</button>
+      <button class="btn-cadastro" routerLink="/cadastro">📝 Cadastro</button>
+    }
+  </div>
+</nav>

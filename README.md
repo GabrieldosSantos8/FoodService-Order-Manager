@@ -1,5 +1,9 @@
 # 🍕 Pizzaria - Sistema Completo Full Stack
 
+![.NET](https://img.shields.io/badge/.NET-9.0-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-19-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+
 Um sistema completo de pizzaria desenvolvido com **Angular 19** no frontend e **.NET 9** no backend.
 
 ## 📋 Funcionalidades

@@ -1,4 +1,4 @@
-# 🍕 Pizzaria - Sistema Completo Full Stack
+# FoodService Order Manager
 
 ![.NET](https://img.shields.io/badge/.NET-9.0-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![Angular](https://img.shields.io/badge/Angular-19-DD0031?style=for-the-badge&logo=angular&logoColor=white)
@@ -6,20 +6,20 @@
 
 Um sistema completo de pizzaria desenvolvido com **Angular 19** no frontend e **.NET 9** no backend.
 
-## 📋 Funcionalidades
+##  Funcionalidades
 
-### 🏠 Página Home
+###  Página Home
 - Logotipo e apresentação da pizzaria
 - Menu lateral com opções: Sobre empresa, Cardápio, Pedidos
 - Menu superior direito: Login ou Cadastrar-se
 - Redirecionamento para área do cliente após cadastro/login
 
-### 👤 Autenticação
+###  Autenticação
 - **Cadastro**: Novo usuário com nome, email e senha
 - **Login**: Autenticação com email e senha
 - **Perfil**: Editar dados pessoais e gerenciar endereços de entrega
 
-### 🍕 Cardápio
+###  Cardápio
 - Lista completa de pizzas com:
   - Nome, descrição, preço
   - Categorias (Salgada, Doce, Especial)
@@ -27,25 +27,25 @@ Um sistema completo de pizzaria desenvolvido com **Angular 19** no frontend e **
 - Carrinho de compras
 - Adicionar/remover itens
 
-### 🛒 Pedidos
+###  Pedidos
 - Histórico de pedidos com status
 - Criar novo pedido
 - Acompanhar status: Pendente, Confirmado, Em Preparo, Saiu para Entrega, Entregue
 - Cancelar pedidos (apenas os pendentes)
 
-### 📍 Endereços
+###  Endereços
 - Gerenciar múltiplos endereços de entrega
 - Editar informações de endereço
 - Deletar endereços
 
-### ℹ️ Sobre Empresa
+### Sobre Empresa
 - Informações sobre a pizzaria
 - Missão, valores e história
 - Contato
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 ### Frontend
 - **Angular 19** - Framework frontend moderno
@@ -63,7 +63,7 @@ Um sistema completo de pizzaria desenvolvido com **Angular 19** no frontend e **
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```
 Pizzaria/
@@ -108,7 +108,7 @@ Pizzaria/
 
 ---
 
-## 🚀 Como Executar
+##  Como Executar
 
 ### Pré-requisitos
 - Node.js (v18+)
@@ -246,7 +246,7 @@ Pizzaria/
 
 ---
 
-## 🔐 Segurança (Implementar)
+##  Segurança (Implementar)
 
 - [ ] **JWT Authentication** - Autenticação com tokens JWT
 - [ ] **Password Hashing** - Hash de senhas (bcrypt)
@@ -257,7 +257,7 @@ Pizzaria/
 
 ---
 
-## 📝 Rotas Frontend
+## Rotas Frontend
 
 | Rota | Componente | Descrição |
 |------|-----------|-----------|
@@ -271,7 +271,7 @@ Pizzaria/
 
 ---
 
-## 🎨 Paleta de Cores
+## Paleta de Cores
 
 - **Primária**: `#667eea` (Azul Roxo)
 - **Secundária**: `#764ba2` (Roxo)
@@ -281,7 +281,7 @@ Pizzaria/
 
 ---
 
-## 🐛 Próximos Passos / TODO
+## Próximos Passos / TODO
 
 ### Backend
 - [ ] Implementar autenticação JWT
@@ -309,17 +309,7 @@ Pizzaria/
 
 ---
 
-## 📞 Contato
-
-Desenvolvido com ❤️ para pizzarias que querem entrar no digital.
-
----
-
-## 📄 Licença
+##  Licença
 
 Este projeto é de código aberto e pode ser usado livremente.
 
----
-
-**Criado em:** Fevereiro de 2026  
-**Última atualização:** 02/02/2026
